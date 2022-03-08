@@ -15,7 +15,7 @@ const Image = styled.img`
     width: 300px;
     height: 300px;
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 1600px) {
     width: 450px;
     height: 450px;
   }
@@ -37,13 +37,7 @@ const DemoDiv: React.FC<props> = ({}) => {
       <Container>
         <Row md={6}>
           <Col md={6}>
-            <Title
-            //   style={{
-            //     fontSize: "100px",
-            //   }}
-            >
-              The Best way to gather information
-            </Title>
+            <Title>The Best way to gather information</Title>
             <p
               style={{
                 fontSize: "30px",
@@ -52,13 +46,12 @@ const DemoDiv: React.FC<props> = ({}) => {
               With Poll-It you can make the best Polls and publish them to a
               small and unique sample group created specficlly for your poll.
             </p>
-            <Button size="lg" variant="outline-primary">
+            <Button size="lg" variant="outline-dark">
               Sign-Up
             </Button>
           </Col>
           <Col md={6}>
             <Image src={PollItLogo}></Image>
-            {/* <img src="https://templatemo.com/templates/templatemo_568_digimedia/assets/images/slider-dec.png"></img> */}
           </Col>
         </Row>
       </Container>
