@@ -1,19 +1,20 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { Nav, Navbar } from "react-bootstrap";
 import logo from "../logo.svg";
+import PollItLogo from "../images/Logo.png";
 
 interface props {}
 
 const NavigationBar: React.FC<props> = ({}) => {
   return (
     <Navbar
-      style={{ marginBottom: "100px" }}
+      style={{ marginBottom: "50px" }}
       bg="dark"
       variant="dark"
       sticky="top"
     >
       <Navbar.Brand>
-        <img src={logo} width="40px" height="40px"></img>
+        <img src={PollItLogo} width="40px" height="40px"></img>
         Poll-It
       </Navbar.Brand>
       <Nav className="container-fluid">
