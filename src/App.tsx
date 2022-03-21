@@ -6,15 +6,35 @@ import StickyFooter from "./components/StickyFooter";
 import DemoDiv from "./components/DemoDiv";
 import StepsDiv from "./components/StepsDiv";
 import Testimonials from "./components/Testimonials";
+import { config } from "./config/config";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/Home";
+import AboutUs from "./pages/Poll_Results";
+import AuthRoute from "./components/AuthRoute";
+import LoginPage from "./pages/Login";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+
+// get data from firestore
+initializeApp(config.firebaseConfig);
+
 
 function App() {
   return (
     <div className="App">
-      <NavigationBar></NavigationBar>
+      {/* <NavigationBar></NavigationBar>
       <DemoDiv></DemoDiv>
       <StepsDiv></StepsDiv>
       <Testimonials></Testimonials>
-      <StickyFooter></StickyFooter>
+      <StickyFooter></StickyFooter> */}
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/about_us" element={<AboutUs />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

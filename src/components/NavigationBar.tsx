@@ -19,13 +19,13 @@ const NavigationBar: React.FC<props> = ({}) => {
       </Navbar.Brand>
       <Nav className="container-fluid">
         <Nav.Item>
-          <Nav.Link>About Us</Nav.Link>
+          <Nav.Link href="/about_us">About Us</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link>Contact Us</Nav.Link>
         </Nav.Item>
         <Nav.Item className="ms-auto">
-          <Nav.Link>Login</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link>Sign-Up</Nav.Link>
