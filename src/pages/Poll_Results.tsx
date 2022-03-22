@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
+import NavigationBar from "../components/NavigationBar";
 
 interface Props {}
 
@@ -92,6 +93,7 @@ const AboutUs: React.FC<Props> = (props) => {
 
   return (
     <div>
+      <NavigationBar></NavigationBar>
       <Container>
         <Title>Polls Analyze</Title>
         {questions.map((obj) => {
