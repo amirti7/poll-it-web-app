@@ -10,6 +10,12 @@ import { useEffect, useState } from "react";
 
 interface Props {}
 
+const Box = styled.p`
+  height: 20px;
+  width: 20px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+`;
 const Title = styled.p`
   font-size: 70px;
   text-align: center;
@@ -18,8 +24,14 @@ const Title = styled.p`
     font-size: 65px;
   }
 `;
+const defaultLabelStyle = {
+  fontSize: "3px",
+  fontFamily: "sans-serif",
+  color: "white",
+};
 
 interface Question {
+  choices: string[];
   poll_question: string;
   poll_question_id: string;
 }
@@ -34,8 +46,12 @@ const AboutUs: React.FC<Props> = (props) => {
 
   const db = getFirestore();
 
-  let choices;
+  let fixedPercente: number;
+  let countAllAns: number;
+  const hashMap = new Map();
+  let filterdAns;
   let dataForChart;
+  let choice1: string, choice2: string, choice3: string, choice4: string;
   const colRef = collection(db, "answers");
   const colRef2 = collection(db, "polls_questions");
 
@@ -59,12 +75,15 @@ const AboutUs: React.FC<Props> = (props) => {
       .then((snapshot) => {
         const formattedSnapshots = snapshot.docs.map((doc) => {
           const obj = {
+            choices: doc.get("choices"),
             poll_question: doc.get("poll_question"),
             poll_question_id: doc.get("poll_question_id"),
           };
           return obj;
         });
-        setQuestions(formattedSnapshots);
+        setQuestions(
+          formattedSnapshots.filter((question) => question.choices != null)
+        );
       })
       .catch((err: any) => {
         console.log("err", err);
@@ -77,17 +96,40 @@ const AboutUs: React.FC<Props> = (props) => {
         <Title>Polls Analyze</Title>
         {questions.map((obj) => {
           {
-            choices = answers.filter(
+            filterdAns = answers.filter(
               (ans) => obj.poll_question_id == ans.poll_question_id
             );
-            // dataForChart=choices.map((choice)=>{
-            //   const pieData={
-            //     title:choice.answer,
-            //     value:
+            console.log("filterdAns", filterdAns);
 
-            //   }
-
-            // });
+            dataForChart = { ...obj.choices };
+            choice1 = dataForChart[0];
+            choice2 = dataForChart[1];
+            choice3 = dataForChart[2];
+            choice4 = dataForChart[3];
+            hashMap.set(choice1, 0);
+            hashMap.set(choice2, 0);
+            hashMap.set(choice3, 0);
+            hashMap.set(choice4, 0);
+            filterdAns.forEach((ans) => {
+              if (ans.answer.localeCompare(choice1) == 0) {
+                hashMap.set(choice1, hashMap.get(choice1) + 1);
+              }
+              if (ans.answer.localeCompare(choice2) == 0) {
+                hashMap.set(choice2, hashMap.get(choice2) + 1);
+              }
+              if (ans.answer.localeCompare(choice3) == 0) {
+                hashMap.set(choice3, hashMap.get(choice3) + 1);
+              }
+              if (ans.answer.localeCompare(choice4) == 0) {
+                hashMap.set(choice4, hashMap.get(choice4) + 1);
+              }
+            });
+            countAllAns = filterdAns.length;
+            console.log("countAllAns", countAllAns);
+            console.log("hashMap", hashMap.get(choice1));
+            console.log("hashMap", hashMap.get(choice2));
+            console.log("hashMap", hashMap.get(choice3));
+            console.log("hashMap", hashMap.get(choice4));
           }
           return (
             <Row md={6} key={obj.poll_question_id}>
@@ -99,15 +141,59 @@ const AboutUs: React.FC<Props> = (props) => {
                 >
                   {obj.poll_question}
                 </p>
+                <div
+                  style={{
+                    fontSize: "20px",
+                  }}
+                >
+                  <Box style={{ backgroundColor: "#E38627" }} />
+                  {choice1}
+                  <br />
+                  <Box style={{ backgroundColor: "#C13C37" }} />
+                  {choice2}
+                  <br />
+                  <Box style={{ backgroundColor: "#6A2135" }} />
+                  {choice3}
+                  <br />
+                  <Box style={{ backgroundColor: "#FF4500" }} />
+                  {choice4}
+                  <br />
+                </div>
               </Col>
               <Col md={6}>
                 <PieChart
                   radius={30}
-                  label={({ dataEntry }) => dataEntry.value}
+                  segmentsShift={1}
+                  label={({ dataEntry }) => {
+                    var fixedNum: string =
+                      Math.round(dataEntry.percentage) + "%";
+                    if (fixedNum == "0%") return null;
+                    return fixedNum;
+                  }}
+                  labelStyle={{
+                    ...defaultLabelStyle,
+                  }}
                   data={[
-                    { title: "One", value: 10, color: "#E38627" },
-                    { title: "Two", value: 15, color: "#C13C37" },
-                    { title: "Three", value: 20, color: "#6A2135" },
+                    {
+                      title: choice1,
+                      value: hashMap.get(choice1),
+                      color: "#E38627",
+                    },
+                    {
+                      title: choice2,
+                      value: hashMap.get(choice2),
+                      color: "#C13C37",
+                    },
+                    {
+                      title: choice3,
+                      value: hashMap.get(choice3),
+                      color: "#6A2135",
+                    },
+                    {
+                      title: choice4,
+                      value: hashMap.get(choice4),
+                      color: "#FF4500",
+                    },
                   ]}
                 />
               </Col>
