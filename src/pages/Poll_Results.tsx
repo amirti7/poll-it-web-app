@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import NavigationBar from "../components/NavigationBar";
+import StickyFooter from "../components/StickyFooter";
 
 interface Props {}
 
@@ -203,6 +204,7 @@ const AboutUs: React.FC<Props> = (props) => {
           );
         })}
       </Container>
+      <StickyFooter></StickyFooter>
     </div>
   );
 };

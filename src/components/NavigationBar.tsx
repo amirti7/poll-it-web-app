@@ -22,7 +22,7 @@ const NavigationBar: React.FC<props> = ({}) => {
           <Nav.Link href="/">Home</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/about_us">About Us</Nav.Link>
+          <Nav.Link href="/about_us">Polls</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link>Contact Us</Nav.Link>
