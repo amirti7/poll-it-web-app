@@ -31,7 +31,7 @@ const NavigationBar: React.FC<props> = ({}) => {
           <Nav.Link href="/login">Login</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link>Sign-Up</Nav.Link>
+          <Nav.Link href="/signup">Sign-Up</Nav.Link>
         </Nav.Item>
       </Nav>
     </Navbar>

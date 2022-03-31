@@ -46,7 +46,7 @@ const DemoDiv: React.FC<props> = ({}) => {
               With Poll-It you can make the best Polls and publish them to a
               small and unique sample group created specficlly for your poll.
             </p>
-            <Button size="lg" variant="outline-dark">
+            <Button href="/signup" size="lg" variant="outline-dark">
               Sign-Up
             </Button>
           </Col>

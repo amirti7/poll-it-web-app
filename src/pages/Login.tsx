@@ -1,4 +1,5 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import NavigationBar from "../components/NavigationBar";
 import StickyFooter from "../components/StickyFooter";
@@ -62,8 +63,12 @@ const LoginPage: React.FC<Props> = (props) => {
               Login
             </Button>
             <p style={{ marginTop: "20px" }}>
-              You are Not a Member Yet?{"          "}
-              <Button variant="outline-dark" style={{ width: "150px" }}>
+              You are Not a Member Yet?
+              <Button
+                variant="outline-dark"
+                style={{ width: "155px" }}
+                href="/signup"
+              >
                 Sign-Up
               </Button>
             </p>
