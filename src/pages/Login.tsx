@@ -13,19 +13,20 @@ const Input = styled.input`
 `;
 
 const Image = styled.img`
-  @media (max-width: 767px) {
-    width: 300px;
-    height: 300px;
-    margin-left: -150px;
-  }
-  @media (max-width: 535px) {
-    width: 560px;
-    height: 500px;
-  }
-  @media (max-width: 1700px) {
+
+@media(min-width: 100px){
+  width: 300px;
+  height:300px;
+}
+@media(min-width: 768px){
+  width: 390px;
+  height:500px;
+}
+
+  @media (min-width: 1300px) {
     width: 600px;
     height: 560px;
-    margin-left: -40px;
+    // margin-left: -40px;
   }
 `;
 

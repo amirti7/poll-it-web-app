@@ -25,7 +25,7 @@ const NavigationBar: React.FC<props> = ({}) => {
           <Nav.Link href="/about_us">Polls</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link>Contact Us</Nav.Link>
+          <Nav.Link href="/contact_us">New Poll</Nav.Link>
         </Nav.Item>
         <Nav.Item className="ms-auto">
           <Nav.Link href="/login">Login</Nav.Link>
